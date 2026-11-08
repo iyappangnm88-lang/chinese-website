@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Traveler’s Myth — A Cinematic Mythic Journey</title>
+  <meta name="description" content="An immersive cinematic landing page inspired by ancient Chinese mythology, following a lone traveller through mist-shrouded peaks and legendary shrines.">
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Noto+Serif+SC:wght@300;400;600;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="loading-active">
+  <!-- Accessibility Skip Link -->
+  <a href="#hero-content" class="skip-link">Skip to main content</a>
+
+  <!-- Custom Cursor for Desktop -->
+  <div id="custom-cursor" class="custom-cursor" aria-hidden="true">
+    <div class="cursor-dot"></div>
+    <div class="cursor-ring"></div>
+  </div>
+
+  <!-- Scroll Progress Indicator (Accessible & Declarative with aria-hidden) -->
+  <div id="scroll-progress-bar" class="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Loading Screen -->
+  <div id="preloader" class="preloader" role="status" aria-live="polite" aria-label="Loading experience">
+    <div class="preloader-content">
+      <div class="ancient-compass" aria-hidden="true">
+        <div class="compass-ring compass-outer"></div>
+        <div class="compass-ring compass-middle"></div>
+        <div class="compass-ring compass-inner"></div>
+        <div class="compass-seal">
+          <span class="seal-char">游</span>
+        </div>
+      </div>
+      <h2 class="preloader-title">The Traveler’s Myth</h2>
+      <p class="preloader-subtitle">Awakening the Mythic Realm • 唤醒秘境</p>
+      
+      <div class="progress-track" aria-hidden="true">
+        <div id="preloader-bar" class="progress-fill"></div>
+      </div>
+      <div class="progress-details">
+        <span id="preloader-percent" class="progress-percent">0%</span>
+        <span id="preloader-status" class="progress-status">Preparing cinematic frames…</span>
+      </div>
+
+      <button id="skip-loader-btn" class="skip-loader-btn hidden" type="button">
+        Enter Realm Directly
+      </button>
+    </div>
+  </div>
+
+  <!-- Fixed Background Canvas -->
+  <div id="canvas-container" class="canvas-container" aria-hidden="true">
+    <canvas id="cinema-canvas"></canvas>
+    <div class="cinematic-vignette"></div>
+    <div class="subtle-mist-overlay"></div>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <a href="#hero" class="brand-link" aria-label="The Traveler's Myth home">
+        <span class="seal-icon" aria-hidden="true">游</span>
+        <span class="brand-text">
+          <span class="brand-title">THE TRAVELER’S MYTH</span>
+          <span class="brand-sub">游侠神话 • MYTHIC CHRONICLE</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Site Sections">
+        <ul class="nav-links">
+          <li><a href="#legend" class="nav-link">The Legend</a></li>
+          <li><a href="#traveller" class="nav-link">The Traveller</a></li>
+          <li><a href="#journey" class="nav-link">The Journey</a></li>
+          <li><a href="#destiny" class="nav-link">Final Moment</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button id="motion-toggle-btn" class="pill-btn" type="button" aria-pressed="false" aria-label="Toggle camera motion effects">
+          <span class="pill-dot"></span>
+          <span class="pill-text">Motion: On</span>
+        </button>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu">
+          <span class="menu-bar"></span>
+          <span class="menu-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile Navigation" aria-hidden="true">
+    <div class="mobile-nav-inner">
+      <ul class="mobile-nav-links">
+        <li><a href="#hero" class="mobile-nav-link">00 Opening</a></li>
+        <li><a href="#legend" class="mobile-nav-link">01 The Legend</a></li>
+        <li><a href="#traveller" class="mobile-nav-link">02 The Traveller</a></li>
+        <li><a href="#journey" class="mobile-nav-link">03 The Journey</a></li>
+        <li><a href="#destiny" class="mobile-nav-link">04 Final Moment</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Side Milestone Waypoints (Desktop) -->
+  <aside class="milestone-tracker" aria-label="Journey Progress" aria-hidden="true">
+    <div class="tracker-line"></div>
+    <div class="tracker-steps">
+      <a href="#hero" class="tracker-step active" data-section="hero" title="Opening">
+        <span class="step-dot"></span>
+        <span class="step-label">Opening</span>
+      </a>
+      <a href="#legend" class="tracker-step" data-section="legend" title="The Legend">
+        <span class="step-dot"></span>
+        <span class="step-label">Legend</span>
+      </a>
+      <a href="#traveller" class="tracker-step" data-section="traveller" title="The Traveller">
+        <span class="step-dot"></span>
+        <span class="step-label">Traveller</span>
+      </a>
+      <a href="#journey" class="tracker-step" data-section="journey" title="The Journey">
+        <span class="step-dot"></span>
+        <span class="step-label">Milestones</span>
+      </a>
+      <a href="#destiny" class="tracker-step" data-section="destiny" title="Final Moment">
+        <span class="step-dot"></span>
+        <span class="step-label">Destiny</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Scrollable Storyline -->
+  <main id="main-content" class="scroll-story">
+
+    <!-- 1. CINEMATIC OPENING (HERO) -->
+    <section id="hero" class="story-section hero-section" aria-labelledby="hero-title">
+      <div id="hero-content" class="section-content hero-content">
+        <div class="hero-badge">
+          <span class="gold-diamond">◆</span>
+          <span>ANCIENT CHRONICLES OF JADE & MIST</span>
+          <span class="gold-diamond">◆</span>
+        </div>
+        
+        <h1 id="hero-title" class="hero-title">
+          <span class="title-sub">AN IMMERSIVE CHINESE MYTHIC ODYSSEY</span>
+          <span class="title-main">The Traveler’s Myth</span>
+          <span class="title-chinese" aria-hidden="true">仙山墨影 • 踏云入境</span>
+        </h1>
+
+        <p class="hero-tagline">
+          Beyond the misty peaks and timeless gates, where ancient echoes guide the solitary wanderer into the heart of a legendary world.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#legend" class="btn btn-primary" id="begin-journey-btn">
+            <span class="btn-text">Begin the Journey</span>
+            <span class="btn-icon" aria-hidden="true">↓</span>
+          </a>
+          <a href="#journey" class="btn btn-secondary">
+            <span class="btn-text">Explore Milestones</span>
+          </a>
+        </div>
+
+        <div class="scroll-indicator" aria-hidden="true">
+          <div class="mouse-icon">
+            <div class="wheel"></div>
+          </div>
+          <span class="scroll-text">Scroll to travel deeper into the realm</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. THE LEGEND -->
+    <section id="legend" class="story-section legend-section" aria-labelledby="legend-title">
+      <div class="section-content story-card">
+        <div class="card-corner tl" aria-hidden="true"></div>
+        <div class="card-corner tr" aria-hidden="true"></div>
+        <div class="card-corner bl" aria-hidden="true"></div>
+        <div class="card-corner br" aria-hidden="true"></div>
+
+        <div class="chapter-header">
+          <span class="chapter-numeral">CHRONICLE I</span>
+          <span class="chapter-chinese" aria-hidden="true">天地传言 • 溯源</span>
+        </div>
+
+        <h2 id="legend-title" class="section-title">The Legend of the Cloud-Veiled Basin</h2>
+        <div class="divider-gold" aria-hidden="true"><span>✦</span></div>
+
+        <div class="story-prose">
+          <p class="lead-p">
+            Long before mortal maps marked these cliffs, ancient tales spoke of a sanctuary suspended between the earth and the heavens.
+          </p>
+          <p>
+            Here, tiered timber pavilions and curved tiled roofs embrace the sheer mountain face. When the morning mist rises from the river gorges, the stone lanterns flicker with an ethereal amber glow, illuminating secrets left behind by celestials who once walked among mortals.
+          </p>
+          <p class="quote-p">
+            “The mountains do not remember the footsteps of armies, but they never forget the whisper of a seeker with an unburdened heart.”
+          </p>
+        </div>
+
+        <div class="lore-facets">
+          <div class="facet-item">
+            <span class="facet-icon" aria-hidden="true">山</span>
+            <span class="facet-label">The Cloud Range</span>
+            <span class="facet-desc">Towering peaks older than written language</span>
+          </div>
+          <div class="facet-item">
+            <span class="facet-icon" aria-hidden="true">阁</span>
+            <span class="facet-label">Silent Pavilions</span>
+            <span class="facet-desc">Sanctuaries carved in harmony with nature</span>
+          </div>
+          <div class="facet-item">
+            <span class="facet-icon" aria-hidden="true">灯</span>
+            <span class="facet-label">Ever-burning Flame</span>
+            <span class="facet-desc">Guiding spirits through perpetual twilight</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. THE TRAVELLER -->
+    <section id="traveller" class="story-section traveller-section" aria-labelledby="traveller-title">
+      <div class="section-content story-card card-wide">
+        <div class="card-corner tl" aria-hidden="true"></div>
+        <div class="card-corner tr" aria-hidden="true"></div>
+        <div class="card-corner bl" aria-hidden="true"></div>
+        <div class="card-corner br" aria-hidden="true"></div>
+
+        <div class="chapter-header">
+          <span class="chapter-numeral">CHRONICLE II</span>
+          <span class="chapter-chinese" aria-hidden="true">行者孤影 • 寻道</span>
+        </div>
+
+        <h2 id="traveller-title" class="section-title">The Lone Wanderer</h2>
+        <div class="divider-gold" aria-hidden="true"><span>✦</span></div>
+
+        <div class="traveller-layout">
+          <div class="traveller-text">
+            <p class="lead-p">
+              He arrives with no retinue, no herald, and no blade drawn in pride.
+            </p>
+            <p>
+              Cloaked against the mountain squalls, the traveller carries only a bamboo staff, an inked journal, and an old brass lantern that hums softly in the presence of ancient jade. He does not seek conquest, treasure, or fame. He walks to listen to what the silent peaks have kept guarded through thousand-year seasons.
+            </p>
+            <p>
+              Each breath in this altitude is thin, fragrant with wet pine and incense. As the stone stairs wind upward into the cloud forest, his footsteps echo the timeless rhythm of pilgrims who came before.
+            </p>
+          </div>
+
+          <div class="traveller-attributes">
+            <div class="attribute-card">
+              <div class="attr-header">
+                <span class="attr-icon" aria-hidden="true">◈</span>
+                <h3 class="attr-title">The Inscribed Journal</h3>
+              </div>
+              <p class="attr-desc">Recording forgotten glyphs and forgotten constellations etched into canyon rocks.</p>
+            </div>
+
+            <div class="attribute-card">
+              <div class="attr-header">
+                <span class="attr-icon" aria-hidden="true">◈</span>
+                <h3 class="attr-title">The Compass of Wind</h3>
+              </div>
+              <p class="attr-desc">Turning not toward magnetic north, but toward places where the boundary of dreams is thin.</p>
+            </div>
+
+            <div class="attribute-card">
+              <div class="attr-header">
+                <span class="attr-icon" aria-hidden="true">◈</span>
+                <h3 class="attr-title">The Solitary Vow</h3>
+              </div>
+              <p class="attr-desc">To bear witness without disturbing the sacred quietude of the celestial realm.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. THE JOURNEY (MILESTONES) -->
+    <section id="journey" class="story-section journey-section" aria-labelledby="journey-title">
+      <div class="section-content story-card card-full">
+        <div class="card-corner tl" aria-hidden="true"></div>
+        <div class="card-corner tr" aria-hidden="true"></div>
+        <div class="card-corner bl" aria-hidden="true"></div>
+        <div class="card-corner br" aria-hidden="true"></div>
+
+        <div class="chapter-header">
+          <span class="chapter-numeral">CHRONICLE III</span>
+          <span class="chapter-chinese" aria-hidden="true">天途纪事 • 景行</span>
+        </div>
+
+        <h2 id="journey-title" class="section-title">Milestones Along the Sacred Ridge</h2>
+        <p class="section-subtitle">Follow the camera’s cinematic descent as each threshold reveals its tale</p>
+        <div class="divider-gold" aria-hidden="true"><span>✦</span></div>
+
+        <div class="milestones-grid">
+          <!-- Milestone 1 -->
+          <article class="milestone-card" data-stage="1">
+            <div class="milestone-badge">
+              <span class="milestone-step">01</span>
+              <span class="milestone-seal" aria-hidden="true">山门</span>
+            </div>
+            <h3 class="milestone-title">The First Gate</h3>
+            <span class="milestone-alias">Threshold of Whispering Pines</span>
+            <p class="milestone-desc">
+              Twin monoliths covered in verdigris and ancient moss mark where the mortal trail dissolves. Passing under the heavy cypress lintel, the noise of the lowlands vanishes, replaced by the deep resonance of mountain wind.
+            </p>
+            <div class="milestone-meta">
+              <span>Depth: 25% Scroll</span>
+              <span>Elevation: 1,800m</span>
+            </div>
+          </article>
+
+          <!-- Milestone 2 -->
+          <article class="milestone-card" data-stage="2">
+            <div class="milestone-badge">
+              <span class="milestone-step">02</span>
+              <span class="milestone-seal" aria-hidden="true">云谷</span>
+            </div>
+            <h3 class="milestone-title">The Valley of Mist</h3>
+            <span class="milestone-alias">Chamber of the White Dragon</span>
+            <p class="milestone-desc">
+              A river of cold fog rolls over the flagstones, swirling around curved eaves and stone railings. Here, shadows take the shape of old protectors, and every breath feels like drinking pure spring air.
+            </p>
+            <div class="milestone-meta">
+              <span>Depth: 50% Scroll</span>
+              <span>Atmosphere: Dense Fog</span>
+            </div>
+          </article>
+
+          <!-- Milestone 3 -->
+          <article class="milestone-card" data-stage="3">
+            <div class="milestone-badge">
+              <span class="milestone-step">03</span>
+              <span class="milestone-seal" aria-hidden="true">灯台</span>
+            </div>
+            <h3 class="milestone-title">The Lantern Shrine</h3>
+            <span class="milestone-alias">Terrace of Lingering Sparks</span>
+            <p class="milestone-desc">
+              Dozens of iron lanterns line the curved balconies, their embers glowing warmly against the twilight blues. The smell of sandalwood drifts from hidden rafters, calming the wanderer’s tired spirit.
+            </p>
+            <div class="milestone-meta">
+              <span>Depth: 75% Scroll</span>
+              <span>Sanctuary: Warm Hearth</span>
+            </div>
+          </article>
+
+          <!-- Milestone 4 -->
+          <article class="milestone-card" data-stage="4">
+            <div class="milestone-badge">
+              <span class="milestone-step">04</span>
+              <span class="milestone-seal" aria-hidden="true">天阁</span>
+            </div>
+            <h3 class="milestone-title">The Celestial Pavilion</h3>
+            <span class="milestone-alias">Crown of the Misty Ridge</span>
+            <p class="milestone-desc">
+              At the highest overlook, the grand sanctuary looks out across an endless ocean of clouds. The camera comes to rest before the temple doors, where the eternal horizon merges earth with the infinite sky.
+            </p>
+            <div class="milestone-meta">
+              <span>Depth: 100% Scroll</span>
+              <span>Summit: Infinite Sea</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. FINAL MOMENT -->
+    <section id="destiny" class="story-section destiny-section" aria-labelledby="destiny-title">
+      <div class="section-content story-card card-narrow text-center">
+        <div class="card-corner tl" aria-hidden="true"></div>
+        <div class="card-corner tr" aria-hidden="true"></div>
+        <div class="card-corner bl" aria-hidden="true"></div>
+        <div class="card-corner br" aria-hidden="true"></div>
+
+        <div class="chapter-header">
+          <span class="chapter-numeral">CHRONICLE FINALIS</span>
+          <span class="chapter-chinese" aria-hidden="true">云隐未央 • 永恒</span>
+        </div>
+
+        <h2 id="destiny-title" class="section-title">The Legend Continues</h2>
+        <div class="divider-gold" aria-hidden="true"><span>✦</span></div>
+
+        <div class="final-statement">
+          <p class="closing-quote">
+            “The path does not dissolve where the mist thickens; it merely waits for the wanderer’s next step.”
+          </p>
+          <p class="closing-sub">
+            The traveler turns his gaze to the undiscovered ranges beyond. Every footstep is both an arrival and a departure. The mythic realm remains, timeless and open to those who dare to seek.
+          </p>
+        </div>
+
+        <div class="final-actions">
+          <button id="return-top-btn" class="btn btn-primary" type="button">
+            <span class="btn-icon" aria-hidden="true">↑</span>
+            <span class="btn-text">Return to the Beginning</span>
+          </button>
+        </div>
+
+        <div class="final-seal-container" aria-hidden="true">
+          <div class="red-seal">
+            <span>游侠</span>
+            <span>神话</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-seal" aria-hidden="true">游</span>
+        <span class="footer-title">THE TRAVELER’S MYTH</span>
+      </div>
+      <p class="footer-tagline">
+        An artistic interactive showcase rendered with 240 photographic sequence frames.
+      </p>
+      <div class="footer-links">
+        <a href="#hero">Opening</a>
+        <span class="divider">/</span>
+        <a href="#legend">The Legend</a>
+        <span class="divider">/</span>
+        <a href="#traveller">The Traveller</a>
+        <span class="divider">/</span>
+        <a href="#journey">Milestones</a>
+        <span class="divider">/</span>
+        <a href="#destiny">Destiny</a>
+      </div>
+      <p class="footer-copy">
+        Crafted with reverence for classical oriental aesthetics and modern web performance.
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
